@@ -1,0 +1,52 @@
+<?php
+
+class Session{
+
+protected static $session;
+public function __construct()
+{
+ if( !isset($_SESSION) ){
+        self::init();
+    }
+    //session_start();
+    //$this->sessionID = session_id();
+}
+
+public static function init(){
+    session_start();
+}
+
+public static function destroy(){
+    session_destroy();
+	unset($_SESSOIN);
+//header("Location: ".URLROOT);
+}
+
+public function isLoged(){
+if(empty($_SESSION['id'])){
+return false;
+}else{
+return true;
+}
+}
+
+public static function  setSession($key, $value){
+	if(!empty($key) && !empty($value)){
+    $_SESSION[$key] = $value;
+    }
+}
+
+public static function getSession($key){
+if(!empty($key)){
+   return  $_SESSION[$key];
+    }
+else {
+echo 'errror';
+}
+}
+
+
+
+}
+
+?>
